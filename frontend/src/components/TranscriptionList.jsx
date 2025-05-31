@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Displays a list of transcriptions, including filename, timestamp, and text.
+ */
 const TranscriptionList = ({ transcriptions }) => {
   return (
     <div>
@@ -8,7 +11,11 @@ const TranscriptionList = ({ transcriptions }) => {
         {transcriptions.map((t, idx) => (
           <li key={idx}>
             <strong>{t.filename}</strong><br />
-            <em>{new Date(t.timestamp).toLocaleString()}</em><br />
+            <em>
+              {t.timestamp && !isNaN(new Date(t.timestamp))
+                ? new Date(t.timestamp).toLocaleString()
+                : 'Just now'}
+            </em><br />
             {t.text}
           </li>
         ))}

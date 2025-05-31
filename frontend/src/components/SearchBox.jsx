@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 
+/**
+ * Component for searching transcriptions by filename.
+ */
 const SearchBox = ({ onSearch }) => {
   const [filename, setFilename] = useState('');
 
   const handleSearch = () => {
-    onSearch(filename);
+    onSearch(filename); // Trigger search callback in parent
   };
 
   return (

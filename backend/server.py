@@ -47,7 +47,7 @@ def transcribe():
     transcription = Transcription(
         filename=file.filename,
         text=result["text"],
-        timestamp=datetime.datetime.utcnow()
+        timestamp=datetime.datetime.now(datetime.timezone.utc)
     )
     session.add(transcription)
     session.commit()
