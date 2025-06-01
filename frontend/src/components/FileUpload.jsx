@@ -58,18 +58,25 @@ const FileUpload = ({ onUploadResults }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="file-upload">Upload</label>
-      <input
-        id="file-upload"
-        type="file"
-        accept="audio/*"
-        multiple
-        onChange={handleFileChange}
-        disabled={uploading}
-      />
-      <button type="submit" disabled={uploading || !files.length}>
-        {uploading ? 'Uploading...' : 'Upload & Transcribe'}
-      </button>
+      <div style={{ marginBottom: '1rem' }}>
+        <label htmlFor="file-upload" style={{ marginBottom: 4, display: 'block' }}>Upload File</label>
+        <div>
+          <input
+            id="file-upload"
+            type="file"
+            accept="audio/*"
+            multiple
+            onChange={handleFileChange}
+            disabled={uploading}
+          />
+          <button
+            type="submit"
+            disabled={uploading || !files.length}
+          >
+            {uploading ? 'Uploading...' : 'Upload & Transcribe'}
+          </button>
+        </div>
+      </div>
 
       <ul>
         {files.map(file => (
