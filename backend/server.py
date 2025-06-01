@@ -16,6 +16,11 @@ pipe = pipeline("automatic-speech-recognition", model="openai/whisper-tiny")
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+# Load FFmpeg to environment path
+directory = os.path.dirname(os.path.abspath(__file__))
+ffmpeg_bin = os.path.join(directory, "ffmpeg", "bin")
+os.environ["PATH"] += os.pathsep + ffmpeg_bin
+
 # --- Health Check Endpoint ---
 @app.route("/health", methods=["GET"])
 def health():
