@@ -24,3 +24,18 @@ services:
     tty: true
     depends_on:
       - backend
+
+  backend-test:
+    build: ./backend
+    command: pytest
+    volumes:
+      - ./backend:/app
+
+  frontend-test:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    command: npm test -- --watchAll=false
+    environment:
+      - CI=true

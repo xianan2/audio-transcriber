@@ -92,19 +92,17 @@ def search_transcriptions():
     query = request.args.get("filename")
     if not query:
         return jsonify({"error": "Missing 'filename' query parameter"}), 400
+    
+    # Preprocess query: remove everything after the first dot
+    query_base = query.split('.', 1)[0]
 
     session = SessionLocal()
     results = session.query(Transcription).filter(
-        or_(
-            func.substr(
-                Transcription.filename,
-                1,
-                func.instr(Transcription.filename, '.') - 1
-            ).ilike(f"%{query}%"),
-            # If there's no dot, match the whole filename
-            ~Transcription.filename.contains('.'),
-            Transcription.filename.ilike(f"%{query}%")
-        )
+        func.substr(
+            Transcription.filename,
+            1,
+            func.instr(Transcription.filename, '.') - 1
+        ).ilike(f"%{query_base}%")
     ).all()
     session.close()
 
