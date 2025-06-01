@@ -86,7 +86,8 @@ def get_transcriptions():
 def search_transcriptions():
     """
     Searches the database for transcriptions with file names
-    that partially match the given 'filename' query parameter.
+    that partially match the given 'filename' query parameter,
+    matching only up to the '.' character (excluding extension).
     """
     query = request.args.get("filename")
     if not query:
@@ -94,11 +95,16 @@ def search_transcriptions():
 
     session = SessionLocal()
     results = session.query(Transcription).filter(
-        func.substr(
-            Transcription.filename,
-            1,
-            func.instr(Transcription.filename, '.') - 1
-        ).ilike(f"%{query}%")
+        or_(
+            func.substr(
+                Transcription.filename,
+                1,
+                func.instr(Transcription.filename, '.') - 1
+            ).ilike(f"%{query}%"),
+            # If there's no dot, match the whole filename
+            ~Transcription.filename.contains('.'),
+            Transcription.filename.ilike(f"%{query}%")
+        )
     ).all()
     session.close()
 

@@ -29,7 +29,7 @@ const App = () => {
   const toggleAllTranscriptions = async () => {
     if (!showList) {
       try {
-        const res = await axios.get('http://localhost:5000/transcriptions');
+        const res = await axios.get('/transcriptions');
         setTranscriptions(res.data);
       } catch (err) {
         console.error("Error fetching all transcriptions:", err);
@@ -43,7 +43,7 @@ const App = () => {
    */
   const handleSearch = async (filename) => {
     try {
-      const res = await axios.get(`http://localhost:5000/search?filename=${filename}`);
+      const res = await axios.get(`/search?filename=${filename}`);
       setTranscriptions(res.data);
       setShowList(true);
     } catch (err) {

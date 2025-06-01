@@ -26,7 +26,7 @@ const FileUpload = ({ onUploadResults }) => {
         const formData = new FormData();
         formData.append('file', file);
 
-        return axios.post('http://localhost:5000/transcribe', formData, {
+        return axios.post('/transcribe', formData, {
           onUploadProgress: (event) => {
             const percent = Math.round((event.loaded * 100) / event.total);
             setProgress(prev => ({ ...prev, [file.name]: percent }));
