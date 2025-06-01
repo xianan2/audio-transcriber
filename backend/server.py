@@ -4,7 +4,7 @@ from transformers import pipeline
 import os
 import datetime
 from database import SessionLocal, Transcription
-from sqlalchemy import func
+from sqlalchemy import func, or_
 
 # Initialize Flask app and enable CORS (for frontend access)
 app = Flask(__name__)
