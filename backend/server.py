@@ -4,6 +4,7 @@ from transformers import pipeline
 import os
 import datetime
 from database import SessionLocal, Transcription
+from sqlalchemy import func
 
 # Initialize Flask app and enable CORS (for frontend access)
 app = Flask(__name__)
@@ -92,7 +93,13 @@ def search_transcriptions():
         return jsonify({"error": "Missing 'filename' query parameter"}), 400
 
     session = SessionLocal()
-    results = session.query(Transcription).filter(Transcription.filename.ilike(f"%{query}%")).all()
+    results = session.query(Transcription).filter(
+        func.substr(
+            Transcription.filename,
+            1,
+            func.instr(Transcription.filename, '.') - 1
+        ).ilike(f"%{query}%")
+    ).all()
     session.close()
 
     return jsonify([
