@@ -58,7 +58,9 @@ const FileUpload = ({ onUploadResults }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <label htmlFor="file-upload">Upload</label>
       <input
+        id="file-upload"
         type="file"
         accept="audio/*"
         multiple
