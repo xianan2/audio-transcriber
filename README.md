@@ -7,7 +7,7 @@ This application is containerised using Docker, requiring **Docker Desktop** to 
 Please refer to **Docker Installation Guide.md** to install Docker.
 
 ## Application Start-up
-Once docker is running on your system, **click on `start-app.bat`** to start the Audio Transcriber web application. The batch script will open [http://localhost:3000/] in your default browser.
+Once docker is running on your system, **click on `start-app.bat`** to start the Audio Transcriber web application. The batch script will open **http://localhost:3000/** in your default browser.
 
 ### Ports
 The application uses **port 5000 for backend** and **port 3000 for frontend**. Please ensure that the two ports are **not being used**. This can be verified by:
