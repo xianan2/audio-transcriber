@@ -1,10 +1,10 @@
 # audio-transcriber
-Audio transciber that accepts audio files, performs transcription and saves result in database
+Audio transcriber that accepts audio files, performs transcription, and saves results in the database
 
-## Environemt Set-Up
+## Environment Set-Up
 This application is containerised using Docker, requiring **Docker Desktop** to be installed in the system before running this application.
 
-Please refer to **Docker Installation Guide.md** to install Docker.
+Please refer to **Docker Installation Guide.md** for instructions to install Docker.
 
 ## Application Start-up
 Once docker is running on your system, **click on `start-app.bat`** to start the Audio Transcriber web application. The batch script will open **http://localhost:3000/** in your default browser.
@@ -21,9 +21,9 @@ taskkill /PID <PID> /F
 So if the PID is 1234, then run `taskkill /PID 1234 /F`
 
 ## Test Scripts
-The test scripts for both frontend and backend has also been containerised and can be run by clicking on **`run-all-tests.bat`** script. 
+The test scripts for both frontend and backend have also been containerised and can be run by clicking on the **`run-all-tests.bat`** script. 
 
-If you would like to run the tests for backend and frontend separately, you can do so in the **root directory** (*/audio-transcriptions) of the project by running the following commands:
+If you would like to run the tests for backend and frontend separately, you can do so in the **root directory** (/audio-transcriptions) of the project by running the following commands:
 
 - To run **backend tests**:
   ```sh
