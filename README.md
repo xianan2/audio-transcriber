@@ -49,11 +49,4 @@ If you would like to run the tests for backend and frontend separately, you can 
 **Make sure you are in the same directory as the `docker-compose.yml` file when running these commands.**
 
 ### Stopping Docker services
-You can stop the docker services by running the following commands:
-
-```cmd
-docker kill audio-transcriber-backend
-docker kill audio-transcriber-frontend
-REM check that there is nothing left running:
-docker ps
-```
+You can stop the docker services by **clicking on [`stop-app.bat`](./stop-app.bat)** to stop and remove the docker containers
