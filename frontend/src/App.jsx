@@ -14,14 +14,21 @@ const App = () => {
   const [transcriptions, setTranscriptions] = useState([]);
   // State to control transcription list visibility
   const [showList, setShowList] = useState(false); 
+  // State to indicate loading
+  const [loading, setLoading] = useState(false);
 
   /**
    * Callback for when new transcriptions are uploaded.
    * Updates the transcriptions state and shows the list.
    */
   const handleUploadResults = (newTranscriptions) => {
+    setLoading(true);
     setTranscriptions(newTranscriptions);
-    setShowList(true);
+    // Wait for state to update, then show the list
+    setTimeout(() => {
+      setShowList(true);
+      setLoading(false);
+    }, 300); // 300ms delay for effect
   };
 
   /**
@@ -29,12 +36,14 @@ const App = () => {
    */
   const toggleAllTranscriptions = async () => {
     if (!showList) {
+      setLoading(true);
       try {
         const res = await axios.get('http://localhost:5000/transcriptions');
         setTranscriptions(res.data);
       } catch (err) {
         console.error("Error fetching all transcriptions:", err);
       }
+      setLoading(false);
     }
     setShowList(!showList);
   };
@@ -44,6 +53,7 @@ const App = () => {
    * Updates the transcriptions state and shows the list.
    */
   const handleSearch = async (filename) => {
+    setLoading(true);
     try {
       const res = await axios.get(`http://localhost:5000/search?filename=${filename}`);
       setTranscriptions(res.data);
@@ -51,6 +61,7 @@ const App = () => {
     } catch (err) {
       console.error("Search failed:", err);
     }
+    setLoading(false);
   };
 
   return (
@@ -65,7 +76,9 @@ const App = () => {
         {showList ? 'Hide Transcriptions' : 'Show All Transcriptions'}
       </button>
 
-      {showList && (
+      {loading && <div style={{ marginTop: '1rem', color: '#888' }}>Loading...</div>}
+
+      {!loading && showList && (
         transcriptions.length > 0 ? (
           <TranscriptionList transcriptions={transcriptions} />
         ) : (
