@@ -15,9 +15,9 @@ Once docker is running on your system, **click on [`start-app.bat`](./start-app.
 The application uses **port 5000 for backend** and **port 3000 for frontend**. Please ensure that the two ports are **not being used**. This can be verified by:
 
 ```cmd
-netstat -ano | findstr :%PORT_NUMBER%
+netstat -ano | findstr :<PORT_NUMBER>
 ```
-Where `PORT_NUMBER` would be **5000** and **3000**. There should not be anything returned. If there are processes that are currently using the ports, note down the **PID** of the process and run the following:
+Where `<PORT_NUMBER>` would be **5000** and **3000**. There should not be anything returned. If there are processes that are currently using the ports, note down the **PID** of the process and run the following:
 
 ```cmd
 taskkill /PID <PID> /F

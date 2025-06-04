@@ -15,7 +15,7 @@
 ## 4. Verify Installation
 Open a terminal (Command Prompt, PowerShell, or Terminal) and run:
 
-```sh
+```cmd
 docker --version
 docker compose version
 ```

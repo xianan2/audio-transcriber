@@ -14,7 +14,7 @@ const TranscriptionList = ({ transcriptions }) => {
             <em>
               {t.timestamp && !isNaN(new Date(t.timestamp))
                 ? new Date(t.timestamp).toLocaleString()
-                : 'Just now'}
+                : 'Unknown Timestamp'}
             </em><br />
             {t.text}
           </li>

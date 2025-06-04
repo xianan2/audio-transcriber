@@ -6,25 +6,26 @@ import TranscriptionList from './components/TranscriptionList';
 import SearchBox from './components/SearchBox';
 
 /**
- * Main application component
- * - Handles loading and displaying transcriptions
- * - Manages search input and result state
+ * Main application component for the Audio Transcriber.
+ * Handles file uploads, searching, and displaying transcriptions.
  */
 const App = () => {
+  // State to store the list of transcriptions
   const [transcriptions, setTranscriptions] = useState([]);
-  const [showList, setShowList] = useState(false); // Controls visibility
+  // State to control transcription list visibility
+  const [showList, setShowList] = useState(false); 
 
   /**
-  * Handle results returned directly from the FileUpload component.
-  * Show only uploaded transcriptions.
-  */
+   * Callback for when new transcriptions are uploaded.
+   * Updates the transcriptions state and shows the list.
+   */
   const handleUploadResults = (newTranscriptions) => {
     setTranscriptions(newTranscriptions);
     setShowList(true);
   };
 
   /**
-   * Fetch and show all transcriptions from the backend.
+   * Fetches all transcriptions from the backend and toggles the list visibility.
    */
   const toggleAllTranscriptions = async () => {
     if (!showList) {
@@ -39,7 +40,8 @@ const App = () => {
   };
 
   /**
-   * Search for transcriptions by filename.
+   * Searches for transcriptions by filename using the backend API.
+   * Updates the transcriptions state and shows the list.
    */
   const handleSearch = async (filename) => {
     try {

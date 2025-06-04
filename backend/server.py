@@ -38,6 +38,7 @@ def transcribe():
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
 
+    # Save the uploaded file
     file = request.files["file"]
     filepath = os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(filepath)
@@ -59,7 +60,7 @@ def transcribe():
     session.commit()
     session.close()
 
-    return jsonify({"filename": file.filename, "text": result["text"]})
+    return jsonify({"filename": file.filename, "text": result["text"], "timestamp": transcription.timestamp.isoformat()})
 
 # --- Retrieve All Transcriptions ---
 @app.route("/transcriptions", methods=["GET"])
@@ -96,6 +97,7 @@ def search_transcriptions():
     # Preprocess query: remove everything after the first dot
     query_base = query.split('.', 1)[0]
 
+    # Query the database for matching filenames
     session = SessionLocal()
     results = session.query(Transcription).filter(
         func.substr(
@@ -103,7 +105,7 @@ def search_transcriptions():
             1,
             func.instr(Transcription.filename, '.') - 1
         ).ilike(f"%{query_base}%")
-    ).all()
+    ).order_by(Transcription.timestamp.desc()).all()
     session.close()
 
     return jsonify([
