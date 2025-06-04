@@ -20,7 +20,7 @@ class Transcription(Base):
     id = Column(Integer, primary_key=True, index=True)
     filename = Column(String, index=True)  # audio file name
     text = Column(Text)                    # transcription result
-    timestamp = Column(DateTime, default=datetime.now(datetime.timezone.utc))
+    timestamp = Column(DateTime, default=datetime.datetime.now(datetime.timezone.utc))
 
 # Create the table in the database (if it doesn't exist yet)
 Base.metadata.create_all(bind=engine)
