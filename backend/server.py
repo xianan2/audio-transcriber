@@ -58,9 +58,10 @@ def transcribe():
     )
     session.add(transcription)
     session.commit()
+    timestamp = transcription.timestamp.isoformat()
     session.close()
 
-    return jsonify({"filename": file.filename, "text": result["text"], "timestamp": transcription.timestamp.isoformat()})
+    return jsonify({"filename": file.filename, "text": result["text"], "timestamp": timestamp})
 
 # --- Retrieve All Transcriptions ---
 @app.route("/transcriptions", methods=["GET"])
