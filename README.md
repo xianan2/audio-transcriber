@@ -2,7 +2,7 @@
 Audio transcriber that accepts audio files, performs transcription, and saves results in the database
 
 ## Environment Set-Up
-This application is containerised using Docker, requiring **Docker Desktop** to be installed in the system before running this application.
+This application is containerised using Docker, requiring **Docker Desktop** to be installed **and running** in the system before running this application.
 
 Please refer to **[Docker Installation Guide.md](./Docker%20Installation%20Guide.md)** for instructions to install Docker.
 
