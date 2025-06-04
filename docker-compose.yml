@@ -34,6 +34,6 @@ services:
     working_dir: /app
     volumes:
       - ./frontend:/app
-    command: npm test -- --watchAll=false
+    command: sh -c "npm install && npm test -- --watchAll=false"
     environment:
       - CI=true

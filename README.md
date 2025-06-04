@@ -11,6 +11,8 @@ Please refer to **[Docker Installation Guide.md](./Docker%20Installation%20Guide
 ## Application Start-up
 Once docker is running on your system, **click on [`start-app.bat`](./start-app.bat)** to start the Audio Transcriber web application. The batch script will open **http://localhost:3000/** in your default browser.
 
+Windows Defender may raise an Unknown Publisher warning when running the various .bat scripts, simply click on **More Info** then **Run Anyway**.
+
 ### Ports
 The application uses **port 5000 for backend** and **port 3000 for frontend**. Please ensure that the two ports are **not being used**. This can be verified by:
 
