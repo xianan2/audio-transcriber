@@ -25,7 +25,7 @@ describe('App integration', () => {
     const file = new File(['audio content'], 'audio1.mp3', { type: 'audio/mp3' });
     fireEvent.change(fileInput, { target: { files: [file] } });
 
-    // Simulate upload button click (adjust selector if needed)
+    // Simulate upload button click
     const uploadButton = screen.getByRole('button', { name: /upload/i });
     fireEvent.click(uploadButton);
 
